@@ -1,0 +1,1 @@
+'''pgdocgen package'''
