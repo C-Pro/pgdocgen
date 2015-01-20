@@ -20,9 +20,9 @@ class HtmlGenerator(object):
     def generate_html(self, jdoc, schema, schemas):
         '''Generates html for a subset of jdoc records describing objects of specific schema'''
 
-        params = { 'jdoc': [j for j in jdoc if j.schema_name == schema],
+        params = { 'jdoc': sorted([j for j in jdoc if j.schema_name == schema],key=lambda x:x.object_name),
                    'schema_name': schema,
-                   'schemas': schemas,
+                   'schemas': sorted(schemas),
                    'project': self.project_name,
                    'title': '{}: functions in schema {}'.format(self.project_name,schema)}
         template = self.lookup.get_template('functions.mako')
@@ -33,7 +33,7 @@ class HtmlGenerator(object):
     def generate_index(self, schemas):
         '''Generates html for an index file'''
 
-        params = { 'schemas': schemas,
+        params = { 'schemas': sorted(schemas),
                    'project': self.project_name,
                    'title': '{}: Database schema documentation'.format(self.project_name)}
         template = self.lookup.get_template('index.mako')
@@ -44,7 +44,7 @@ class HtmlGenerator(object):
         '''Writes all jdoc records into files. One file per schema plus index file.'''
 
         #get all distinct schema names from jdoc:
-        schemas = set([j.schema_name for j in jdoc if j.schema_name != ''])
+        schemas = list(set([j.schema_name for j in jdoc if j.schema_name != '']))
 
         for schema in schemas:
           with open(output_dir + os.sep + schema + '.html', 'w') as f:
