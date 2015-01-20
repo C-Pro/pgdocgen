@@ -1,12 +1,4 @@
-<html>
-<head>
-<meta charset="utf-8">
-<title>
-Stored functions of schema ${schema_name}
-</title>
-</head>
-<body>
-<h1>Stored functions of schema ${schema_name}</h1>
+<%inherit file="base.mako" />
 <table>
 % for f in jdoc:
   <tr>
@@ -14,7 +6,7 @@ Stored functions of schema ${schema_name}
     <h3>Function ${f.schema_name}.${f.object_name}</h3>
     <p><strong>returns:</strong> ${f.returns}</p>
     % if len(f.params) > 0:
-      <p><strong>Параметры:</strong>
+      <p><strong>Parameters:</strong>
       <ul>
         % for p in f.params:
           <li><strong>${p[0]}:</strong>&nbsp;${p[1]}</li>
@@ -27,5 +19,4 @@ Stored functions of schema ${schema_name}
   </tr>
 % endfor
 </table>
-</body>
-</html>
+

@@ -6,9 +6,9 @@ pgdocgen is a basic documentation generator for Postgresql schemas and PL/PgSQL 
 
 #### Usage:
 ```
-pgdocgen path*to*sql*files
+pgdocgen path*to*sql*files source*files*extension output*directory project*name
 ```
 #### Example:
 ```
-pgdocgen /home/user/sql_schema
+pgdocgen /home/user/sql_schema sql /home/user/sql_schema/docs MyProject
 ```
