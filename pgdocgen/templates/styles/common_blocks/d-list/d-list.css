@@ -1,0 +1,11 @@
+.d-list {
+	color: #767676;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+}
+
+.d-list__item a {
+	color: #00be93;
+	line-height: 30px;
+	text-decoration: none;
+}

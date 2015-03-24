@@ -13,7 +13,6 @@ def process_file(jdoc):
        It parses file and generates JDOC objects'''
     def process_int(s):
         '''internal process_file without jdoc parameter'''
-        
         p = Parser()
         r = p.parse(s)
         global jdoc
@@ -29,9 +28,11 @@ if __name__=='__main__':
     project_name = args[4]
     jdoc = []
 
-    read_dir(input_dir,input_ext,process_file(jdoc))
-    #from ddlobject.db import DB
-    #db = DB('dbname=hr user=hr port=5432 password=hr host=127.0.0.1')
+    from pgdocgen.ddlobject.db import DB
+    db = DB('dbname=hr user=hr port=5432 password=hr host=127.0.0.1')
+    from pgdocgen.readddl import readddl
+    jdoc = readddl(db)
+    #read_dir(input_dir,input_ext,process_file(jdoc))
 
     g = HtmlGenerator(project_name)
     g.write_files(jdoc,output_dir)

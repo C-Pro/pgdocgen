@@ -1,0 +1,15 @@
+.d-content {
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    padding: 5px 35px 35px 40px;
+    margin-bottom: 90px;
+}
+
+.d-content__title {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+    color: #3e3e3e;
+    margin-top: 30px;
+}

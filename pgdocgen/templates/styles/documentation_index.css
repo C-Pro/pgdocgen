@@ -1,0 +1,26 @@
+@import url('page_blocks/d-page/d-page.css');
+@import url('page_blocks/d-footer/d-footer.css');
+@import url('common_blocks/d-heading/d-heading.css');
+@import url('page_blocks/d-content/d-content.css');
+@import url('common_blocks/d-list/d-list.css');
+
+html, body, p {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+        width: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+p {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #767676;
+}
+
+

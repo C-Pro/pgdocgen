@@ -20,12 +20,15 @@ class HtmlGenerator(object):
     def generate_html(self, jdoc, schema, schemas):
         '''Generates html for a subset of jdoc records describing objects of specific schema'''
 
-        params = { 'jdoc': sorted([j for j in jdoc if j.schema_name == schema],key=lambda x:x.object_name),
+        params = { 'functions': sorted([j for j in jdoc \
+                   if (j.schema_name == schema and j.object_type in ['function','procedure','trigger'])],key=lambda x:x.object_name),
+                   'tables': sorted([j for j in jdoc \
+                   if (j.schema_name == schema and j.object_type in ['table','view'])],key=lambda x:x.object_name),
                    'schema_name': schema,
                    'schemas': sorted(schemas),
                    'project': self.project_name,
-                   'title': '{}: functions in schema {}'.format(self.project_name,schema)}
-        template = self.lookup.get_template('functions.mako')
+                   'title': '{}: schema {}'.format(self.project_name,schema)}
+        template = self.lookup.get_template('schema.mako')
         html = template.render_unicode(**params)
 
         return html
@@ -36,7 +39,7 @@ class HtmlGenerator(object):
         params = { 'schemas': sorted(schemas),
                    'project': self.project_name,
                    'title': '{}: Database schema documentation'.format(self.project_name)}
-        template = self.lookup.get_template('index.mako')
+        template = self.lookup.get_template('index_new.mako')
         html = template.render_unicode(**params)
         return html
 

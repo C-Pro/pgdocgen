@@ -1,0 +1,17 @@
+.d-breadcrumbs {
+	display: inline-block;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: #00bc9a;
+	text-decoration: none;
+	margin: 17.5px 0 0 22.5px;
+}
+
+.d-breadcrumbs__arrow {
+	display: inline-block;
+	width: 14px;
+	height: 5px;
+	background-image: url('../../sprite_fin.png');
+	background-position: -32px -26px;
+	vertical-align: middle;
+}

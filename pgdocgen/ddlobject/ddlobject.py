@@ -2,7 +2,7 @@
 
 
 class DDLObject(object):
-  '''Basic class for all DDL schema objects'''
-  name = ''
-  comment = ''
-  contents = []
+    '''Basic class for all DDL schema objects'''
+    object_name = ''
+    comment = ''
+    contents = []

@@ -1,0 +1,56 @@
+.d-function {
+	font-family: "Arial", sans-serif;
+	color: #000;
+	border-bottom: 1px solid #efefef;
+	padding: 30px 0;
+}
+
+.d-function_last_pos {
+	border: none;
+}
+
+.d-function__title {
+	font-size: 18px;
+	font-weight: 100;
+}
+
+.d-function__title_fname {
+	font-family: "Courier New", sans-serif;
+	font-weight: 0;
+	display: inline-block;
+	font-size: 17px;
+	font-weight: 100;
+}
+
+.d-function__description {
+	margin: 20px 0 20px 22.5px;
+}
+
+.d-function__parameter_title {
+	font-size: 15px;
+	font-weight: 100;
+	margin-bottom: 17.5px;
+}
+
+.d-function__parameter_item {
+	color: #000;
+	font-size: 13px;
+	font-weight: 100;
+	line-height: 22.5px;
+	margin-left: 22.5px;
+}
+
+.d-function__parameter_item span {
+	font-family: "Courier New", sans-serif;
+}
+
+.d-function__result {
+	font-size: 15.5px;
+	font-weight: 100;
+	color: #000;
+	margin-top: 17.5px;
+}
+
+.d-function__result span {
+	font-family: "Courier New", sans-serif;
+}

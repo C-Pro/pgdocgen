@@ -1,0 +1,145 @@
+.d-function-list {
+    width: 210px;
+    height: 100%;
+    position: fixed;
+    background-color: #5a6060;
+    top: 0;
+    left: 0;
+    padding: 0;
+    padding-bottom: 67px;
+    margin: 0;
+}
+
+.d-function-list__content {
+    height: 100%;
+    width: 172px;
+    overflow: scroll;
+    background-color: #6a7070;
+}
+
+.d-function-list__f-level, .d-function-list__s-level {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    list-style: none;
+}
+
+.d-function-list__f-level {
+    width: 162px;
+    background-color: #626868;
+    padding-bottom: 67px;
+}
+
+.d-function-list__s-level {
+    font-size: 13px;
+    padding-bottom: 15px;
+}
+
+.d-function-list__f-level .d-function-list__item {
+    width: 142px;
+    line-height: 39px;
+    border-bottom: 1px solid #6a7070;
+    background-color: #626868;
+    padding-left: 20px;
+}
+
+.d-function-list__s-level .d-function-list__item {
+    line-height: 32.5px;
+    padding: 0;
+    border: none;
+}
+
+.d-function-list__f-level .d-function-list__item a {
+    vertical-align: middle;
+    font-family: "Aeial", sans-serif;
+    font-size: 13px;
+    font-weight: 100;
+    color: #fcfefd;
+    text-decoration: none;
+}
+
+.d-function-list__s-level .d-function-list__item a {
+    font-size: 12px;
+}
+
+.d-function-list__item span {
+    display: inline-block;
+    margin-bottom: 1px;
+    margin-right: 5px;
+    cursor: pointer;
+    vertical-align: middle;
+    width: 11px;
+    height: 11px;
+}
+
+.d-function-list__item .plus {
+    background-image: url('../../sprite_fin.png');
+    background-position: -119px -28px;
+}
+
+.d-function-list__item .minus {
+    background-image: url('../../sprite_fin.png');
+    background-position: -130px -28px;
+}
+
+.d-function-list_minimized_state {
+    left: -172px;
+}
+
+.d-function-list__btn-uncover, .d-function-list__btn-cover {
+    width: 38px;
+    display: inline-block;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -75px;
+}
+
+.d-function-list__btn-uncover a, .d-function-list__btn-cover a {
+    display: block;
+    transform: rotate(270deg);
+    width: 120px;
+    margin-top: 70px;
+    margin-left: -42.5px;
+    color: #aaaead;
+    font-family: "Arial", sans-serif;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.d-function-list__btn-uncover span {
+    display: block;
+    width: 5px;
+    height: 8px;
+    background-image: url('../../sprite_fin.png');
+    background-position: -126px -15px;
+    margin-left: 15.5px;
+    margin-bottom: -17.5px;
+    cursor: pointer;
+}
+
+.d-function-list__btn-cover span {
+    display: block;
+    width: 5px;
+    height: 8px;
+    background-image: url('../../sprite_fin.png');
+    background-position: -131px -15px;
+    margin-left: 15.5px;
+    margin-bottom: -17.5px;
+    cursor: pointer;  
+}
+
+.d-function-list__item.selected, .d-function-list__s-level .d-function-list__item {
+    background-color: #535959;
+    border: none;
+}
+
+.d-function-list__f-level .d-function-list__item.selected a {
+    color: #7f8382;
+}
+
+.d-function-list__f-level .d-function-list__item.selected .d-function-list__s-level .d-function-list__item a {
+    color: #fcfefd;
+}
