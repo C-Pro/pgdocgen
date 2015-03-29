@@ -14,6 +14,12 @@ class DDLTest (unittest.TestCase):
         self.assertEqual(len(db.contents), 2)
         schema_set = set([x.object_name for x in db.contents])
         self.assertEqual(schema_set, {'s1', 's2'})
+        self.assertEqual(len(db.contents[0].contents), 1)
+        self.assertEqual(db.contents[0].contents[0].object_name,
+                         't1')
+        self.assertEqual(len(db.contents[1].contents), 1)
+        self.assertEqual(db.contents[1].contents[0].object_name,
+                         't2')
 
 
 if __name__ == '__main__':

@@ -55,3 +55,5 @@ target/
 
 .project
 .pydevproject
+pgdocgen/tests/out_html
+pgdocgen/tests/out_html/*

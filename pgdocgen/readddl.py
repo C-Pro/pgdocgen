@@ -15,4 +15,5 @@ def readddl(db):
             j.object_type = 'table'
             for c in table.contents:
                 j.params.append(c)
+            jdoc.append(j)
     return jdoc

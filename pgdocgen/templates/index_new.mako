@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="styles/documentation_index.css" />
-    </head>
-    <body class="d-page">
-        <div class="d-page__wrapper">
+<%inherit file="base.mako" />
+
             <h1 class="d-heading">
                 ${title}
             </h1>
@@ -16,7 +10,7 @@
                 <ul class="d-list">
                     % for schema in schemas:
                     <li class="d-list__item">
-                        <a href="#">
+                        <a href="${schema}.html">
                             Schema ${schema}
                         </a>
                     </li>
@@ -24,29 +18,3 @@
                 </ul>
             </div>
         </div>
-        <footer class="d-footer">
-            <div class="d-footer__content">
-                <div class="d-footer__info">
-                    <p class="d-footer__info_copyright">
-                      PgDocGen:
-                    </p>
-                    <p class="d-footer__info_page-title">
-                        ${title}
-                    </p>
-                </div>
-                <div class="d-footer__generation-time">
-                    <p class="d-footer__generation-time_label">
-                        Built:
-                        <span class="d-footer__generation-time_value">
-                          <%!
-                            import time
-                            gen_time = time.strftime('%Y-%m-%d %H:%M:%S')
-                          %>
-                          ${gen_time}
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </footer>
-    </body>
-</html>

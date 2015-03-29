@@ -1,7 +1,7 @@
 '''Html output generator (uses mako templates)'''
 
 import os
-from mako.template import Template
+import shutil
 from mako.lookup import TemplateLookup
 
 class HtmlGenerator(object):
@@ -11,7 +11,7 @@ class HtmlGenerator(object):
         '''Define templates directory'''
         self.project_name = project_name
         from pgdocgen import PATH
-        self.template_dir = PATH +'/templates'
+        self.template_dir = PATH + '/templates'
         self.lookup = TemplateLookup(directories=[self.template_dir],
                                      input_encoding='utf-8',
                                      output_encoding='utf-8',
@@ -44,13 +44,21 @@ class HtmlGenerator(object):
         return html
 
     def write_files(self, jdoc, output_dir):
-        '''Writes all jdoc records into files. One file per schema plus index file.'''
+        '''Writes all jdoc records into files.
+        One file per schema plus index file.'''
 
         #get all distinct schema names from jdoc:
-        schemas = list(set([j.schema_name for j in jdoc if j.schema_name != '']))
-
+        schemas = list(set([j.schema_name \
+                            for j in jdoc if j.schema_name != '']))
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        try:
+            shutil.copytree(self.template_dir + os.sep + 'styles',
+                            output_dir + os.sep + 'styles')
+        except FileExistsError:
+            None
         for schema in schemas:
-          with open(output_dir + os.sep + schema + '.html', 'w') as f:
-            f.write(self.generate_html(jdoc,schema,schemas))
+            with open(output_dir + os.sep + schema + '.html', 'w') as f:
+                f.write(self.generate_html(jdoc, schema, schemas))
         with open(output_dir + os.sep + 'index.html', 'w') as f:
-          f.write(self.generate_index(schemas))
+            f.write(self.generate_index(schemas))

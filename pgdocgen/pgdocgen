@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 '''pgdocgen starting point'''
 
-import sys
-from getopt import getopt
-
+import pgdocgen.utils
 from pgdocgen.parser import Parser
 from pgdocgen.files import read_dir
 from pgdocgen.output import HtmlGenerator
+
+#Configuration dictionary
+settings = {}
+log = None
+
 
 def process_file(jdoc):
     '''Function to be called on each source file.
@@ -19,21 +22,35 @@ def process_file(jdoc):
         jdoc = jdoc + r
     return process_int
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     '''main'''
-    optlist, args = getopt(sys.argv,'x',[])
-    input_dir = args[1]
-    input_ext = args[2]
-    output_dir = args[3]
-    project_name = args[4]
+
+    settings = pgdocgen.utils.parse_options(settings)
+    settings = pgdocgen.utils.load_config(settings)
+    log = pgdocgen.utils.init_logging(settings, log)
+    log.info('Pgdocgen started')
+
     jdoc = []
 
-    from pgdocgen.ddlobject.db import DB
-    db = DB('dbname=hr user=hr port=5432 password=hr host=127.0.0.1')
-    from pgdocgen.readddl import readddl
-    jdoc = readddl(db)
-    #read_dir(input_dir,input_ext,process_file(jdoc))
+    if 'db_connect_string' in settings.keys():
+        log.debug('Reading from database...')
+        from pgdocgen.ddlobject.db import DB
+        db = DB(settings['db_connect_string'])
+        from pgdocgen.readddl import readddl
+        jdoc = readddl(db)
 
-    g = HtmlGenerator(project_name)
-    g.write_files(jdoc,output_dir)
+    if 'input_dir' in settings.keys():
+        log.debug('Reading input files...')
+        read_dir(settings['input_dir'],
+                 settings['input_ext'],
+                 process_file(jdoc))
 
+    if len(jdoc) == 0:
+        log.error('Output is empty!')
+        exit(1)
+    else:
+        g = HtmlGenerator(settings['project_name'])
+        log.debug('Writing output files...')
+        g.write_files(jdoc, settings['output_dir'])
+        log.info('Done!')

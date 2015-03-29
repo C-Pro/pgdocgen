@@ -20,7 +20,7 @@ class Schema(DDLObject):
                       n.nspname = %s and
                       n.nspname not like 'pg\_%%' and
                       n.nspname not in ('information_schema') and
-                      d.objsubid = 0
+                      coalesce(d.objsubid,0) = 0
              order by c.relname'''
         cur = conn.cursor()
         cur.execute(sql, [name])
@@ -34,5 +34,6 @@ class Schema(DDLObject):
 
     def __init__(self, name, conn):
         '''Schema object constructor'''
+        self.contents = []
         self.read_contents(name, conn)
         self.object_name = name

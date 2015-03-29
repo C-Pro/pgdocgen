@@ -48,6 +48,7 @@ order by s.name,t.name,a.attnum'''
 
     def __init__(self, schema_name, name, comment, conn):
         '''Table object constructor'''
+        self.contents = []
         self.read_contents(schema_name, name, conn)
         self.object_name = name
         self.comment = comment
