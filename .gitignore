@@ -57,3 +57,5 @@ target/
 .pydevproject
 pgdocgen/tests/out_html
 pgdocgen/tests/out_html/*
+pgdocgen/play
+pgdocgen/play/*
