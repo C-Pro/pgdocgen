@@ -10,9 +10,12 @@
                 <ul class="d-list">
                     % for schema in schemas:
                     <li class="d-list__item">
-                        <a href="${schema}.html">
-                            Schema ${schema}
+                        <a href="${schema.object_name}.html">
+                            Schema ${schema.object_name}
                         </a>
+                        % if schema.comment:
+                        <p>${schema.comment}</p>
+                        % endif
                     </li>
                     % endfor
                 </ul>

@@ -1,6 +1,7 @@
 '''Table description module'''
 import copy
 from pgdocgen.ddlobject.ddlobject import DDLObject
+from pgdocgen.utils import get_logger
 
 
 class Table(DDLObject):
@@ -35,6 +36,7 @@ where s.name = %s and
       t.name = %s and
       coalesce(a.attnum,1) > 0
 order by s.name,t.name,a.attnum'''
+        log = get_logger()
         cur = conn.cursor()
         cur.execute(sql, [schema, name])
         columns = cur.fetchall()
@@ -42,14 +44,14 @@ order by s.name,t.name,a.attnum'''
             column_dict = {'name': column[0],
                            'type': column[1],
                            'comment': column[2]}
-            print('{} {}: {}'.format(column[0], column[1], column[2]))
+            log.debug('{} {}: {}'.format(column[0], column[1], column[2]))
             self.contents.append(copy.deepcopy(column_dict))
         cur.close()
 
     def __init__(self, schema_name, name, comment, conn):
         '''Table object constructor'''
         self.contents = []
-        self.read_contents(schema_name, name, conn)
         self.object_name = name
         self.comment = comment
         self.schema_name = schema_name
+        self.read_contents(schema_name, name, conn)

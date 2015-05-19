@@ -17,13 +17,19 @@ class DB(DDLObject):
     def read_contents(self):
         '''Read all schemas in database'''
         cur = self.conn.cursor()
-        cur.execute('''select schema_name
-                     from information_schema.schemata''')
+        cur.execute('''select nspname,
+                              description
+                        from pg_catalog.pg_namespace s
+                        left join pg_catalog.pg_description d
+                            on (d.objoid = s.oid)
+                        where s.nspname not like 'pg\_%' and
+                        s.nspname <> 'information_schema'
+                        order by s.nspname''')
         schemas = cur.fetchall()
         cur.close()
         from pgdocgen.ddlobject.schema import Schema
-        for schema in [x[0] for x in schemas]:
-            schema_obj = Schema(schema, self.conn)
+        for (schema, comment) in [(x[0], x[1]) for x in schemas]:
+            schema_obj = Schema(schema, comment, self.conn)
             self.contents.append(copy.deepcopy(schema_obj))
         self.conn.close()
 

@@ -32,13 +32,19 @@ def load_config(settings):
     return settings
 
 
-def init_logging(settings, log):
+def get_logger():
+    '''Get logger instance'''
+    log = logging.getLogger('pgdocgen')
+    return log
+
+
+def init_logging(settings):
     '''Set up logger'''
     lg_format = '%(asctime)s : - %(message)s'
     lg_dateformat = '%Y.%m.%d %H:%M:%S'
     logging.basicConfig(format=lg_format, datefmt=lg_dateformat)
 
-    log = logging.getLogger('pgdocgen')
+    log = get_logger()
 
     handler = logging.handlers.WatchedFileHandler(filename = settings['log_file'] \
                                                   if 'log_file' in settings.keys() else None,

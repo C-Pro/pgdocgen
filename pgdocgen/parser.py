@@ -1,6 +1,7 @@
 '''naive JDOC subset parser module'''
 import copy
 import re
+from pgdocgen.utils import get_logger
 
 
 class JDOC(object):
@@ -46,17 +47,18 @@ class Parser(object):
         self.RE_END_COMMENT = re.compile(r'(.*)\*/')
         self.RE_PARAM = re.compile(r'^[\s]*\*[\s]*@([\w]+)[\s]*(.*)')
         self.RE_SCHEMA_OBJECT = re.compile(r'[\s]*([\w]+)\.([\w]+)')
+        self.log = get_logger()
 
     def parse(self, text):
         '''Parses input string and returns list of DDLObjects'''
         in_comment = False
         result = []
         for s in iter(text.splitlines()):
-            print('S={}'.format(s))
+            self.log.debug('Parsing string: {}'.format(s))
             rsc = self.RE_START_COMMENT.match(s)
             if rsc:
                 if in_comment:
-                    print('Double comment start!')
+                    self.log.debug('Double comment start!')
                 in_comment = True
                 comment = rsc.group(1)
                 jdoc = JDOC('', '', comment)
@@ -66,7 +68,7 @@ class Parser(object):
                 rec = self.RE_END_COMMENT.match(s)
                 if rp:
                     if rsc:
-                        print('Comment start and param on same line!')
+                        self.log.debug('Comment start and param on same line!')
                     param_name = rp.group(1)
                     param_desc = rp.group(2)
                     if param_name in ['function', 'trigger', 'procedure']:
@@ -82,7 +84,7 @@ class Parser(object):
                         jdoc.returns = param_desc
                     else:
                         jdoc.add_param(param_name, param_desc)
-                    print('Param {} = {}'.format(param_name, param_desc))
+                    self.log.debug('Param {} = {}'.format(param_name, param_desc))
                 if rcb:
                     comment = comment + ' ' + rcb.group(1)
                     jdoc.comment = comment
@@ -90,5 +92,5 @@ class Parser(object):
                     in_comment = False
                     result.append(copy.deepcopy(jdoc))
                     del jdoc
-                    print('Comment:' + comment)
+                    self.log.debug('Comment:' + comment)
         return result

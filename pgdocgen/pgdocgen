@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     settings = pgdocgen.utils.parse_options(settings)
     settings = pgdocgen.utils.load_config(settings)
-    log = pgdocgen.utils.init_logging(settings, log)
+    log = pgdocgen.utils.init_logging(settings)
     log.info('Pgdocgen started')
 
     jdoc = []
