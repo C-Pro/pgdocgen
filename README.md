@@ -1,11 +1,10 @@
 # pgdocgen
 =========
 
-*WORK IN PROGRESS*
 
 pgdocgen is a basic documentation generator for Postgresql schemas and PL/PgSQL code.
 * It extracts schema description from `information_schema` tables and uses comments made with `comment on` sql command.
-* It extracts description of stored functions from JavaDoc like format inspired with [HyperSQL](http://projects.izzysoft.de/trac/hypersql)
+* It extracts description of stored functions from JavaDoc like format inspired by [HyperSQL](http://projects.izzysoft.de/trac/hypersql)
 
 Comment format example:
 ```
@@ -17,11 +16,28 @@ Comment format example:
 */
 ```
 
+To build documentation you should create configuration file.
+Take a look at pgdocgen/tests/test.ini:
+
+```
+[pgdocgen]
+db_connect_string=dbname=test_pgdocgen user=test_pgdocgen port=5432 password=aoijrm39R host=127.0.0.1
+log_file=test.log
+input_dir=test_sql
+input_ext=sql
+output_dir=out_html
+project_name=Pgdocgen test project
+```
+
+Config parameters:
+* db_connect_string [optional] - connection string to live database to extract DDL information (pgdocgen extracts table descriptions from database)
+* input_dir [optional] - directory full of sql files with your stored procedures commented in JavaDoc-like format described earlier ^^
+* input_ext - extension of input files. You can really comment code in any language using this syntax, maybe you'll want to change this parameter to something other than 'sql' :)
+* output_dir - where pgdocgen will output html documentation
+* project_name - this will be used for page titles
+
+
 #### Usage:
 ```
-pgdocgen path*to*sql*files source*files*extension output*directory project*name
-```
-#### Example:
-```
-pgdocgen /home/user/sql_schema sql /home/user/sql_schema/docs MyProject
+pgdocgen config.file
 ```

@@ -46,9 +46,10 @@ def init_logging(settings):
 
     log = get_logger()
 
-    handler = logging.handlers.WatchedFileHandler(filename = settings['log_file'] \
-                                                  if 'log_file' in settings.keys() else None,
-                                                  encoding='utf-8')
+    handler = logging.handlers.WatchedFileHandler(
+                            filename=settings['log_file'] \
+                            if 'log_file' in settings.keys() else None,
+                            encoding='utf-8')
     formatter = logging.Formatter(fmt=lg_format, datefmt=lg_dateformat)
     handler.setFormatter(formatter)
     log.addHandler(handler)

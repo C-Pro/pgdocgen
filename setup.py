@@ -12,4 +12,12 @@ setup(
         'psycopg2',
         'mako',
     ],
+    # metadata for upload to PyPI
+    author = "Sergey Melekhin",
+    author_email = "cpro29a@gmail.com",
+    description = "Documentation generator for Postgresql schema",
+    license = "LGPL",
+    keywords = ["sql","ddl","documentation","generator"],
+    url = "https://github.com/C-Pro/pgdocgen",
+    download_url = "https://github.com/C-Pro/pgdocgen/tarball/0.1",
 )

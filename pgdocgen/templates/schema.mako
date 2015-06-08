@@ -1,13 +1,13 @@
 <%inherit file="base.mako" />
 
-<div class="d-function-list d-function-list_maximized_state">
+<div id="Sidebar" class="d-function-list d-function-list_maximized_state">
                 <div class="d-function-list__content">
                     <ul class="d-function-list__f-level">
                         <li class="d-function-list__item selected">
                             <span class="minus">
                             </span>
                             <a href="#">
-                                ${schema_name}
+                                Schema ${schema_name}
                             </a>
                             <ul class="d-function-list__s-level">
                             % for f in functions:
@@ -28,11 +28,22 @@
                             % endfor
                             </ul>
                         </li>
+                        % for s in schemas:
+                        % if schema_name != s.object_name:
+                        <li class="d-function-list__item">
+                            <span class="plus">
+                            </span>
+                            <a href="${s.object_name}.html">
+                                Schema ${s.object_name}
+                            </a>
+                        </li>
+                        % endif
+                        % endfor
                     </ul>
                 </div>
-                <div class="d-function-list__btn-cover" href="#">
+                <div id="SidebarBt" class="d-function-list__btn-cover" href="#">
                     <span></span>
-                    <a href="#">
+                    <a href="#" onClick="toggleSidebar()">
                         Contents
                     </a>
                 </div>

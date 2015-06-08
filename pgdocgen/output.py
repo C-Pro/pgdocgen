@@ -44,12 +44,11 @@ class HtmlGenerator(object):
 
     def generate_index(self, schemas):
         '''Generates html for an index file'''
-
         params = {'schemas': sorted(schemas, key=lambda x: x.object_name),
                   'project': self.project_name,
                   'title': '{}: Database schema documentation'\
                   .format(self.project_name)}
-        template = self.lookup.get_template('index_new.mako')
+        template = self.lookup.get_template('index.mako')
         html = template.render_unicode(**params)
         return html
 

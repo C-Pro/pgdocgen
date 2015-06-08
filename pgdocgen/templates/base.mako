@@ -4,10 +4,25 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="styles/documentation_functions.css" />
         <title>${title}</title>
+        <script type="text/javascript">
+          function toggleSidebar()
+          {
+            var classname = document.getElementById("Sidebar").className
+            if(classname.match(/maximized/gi) != null)
+            {
+              document.getElementById("Sidebar").className = "d-function-list d-function-list_minimized_state";
+              document.getElementById("SidebarBt").className = "d-function-list__btn-uncover";
+            } else
+            {
+              document.getElementById("Sidebar").className = "d-function-list d-function-list_maximized_state";
+              document.getElementById("SidebarBt").className = "d-function-list__btn-cover";
+            }
+          }
+        </script>
     </head>
     <body class="d-page">
         <div class="d-page__wrapper">
-            ${next.body()}        
+            ${next.body()}
         </div>
         <footer class="d-footer">
             <div class="d-footer__content">

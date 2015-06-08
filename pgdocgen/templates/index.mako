@@ -1,14 +1,23 @@
 <%inherit file="base.mako" />
-<h3>List of schemas:</h3>
-<table>
-% for s in schemas:
-  <tr>
-  <td>
-    <h3><a href="${s.object_name}.html">Schema ${s.object_name}</a></h3>
-    % if s.comment:
-    <p>${s.comment}</p>
-    % endif
-  </td>
-  </tr>
-% endfor
-</table>
+
+            <h1 class="d-heading">
+                ${title}
+            </h1>
+            <div class="d-content">
+                <h2 class="d-content__title">
+                    List of schemas:
+                </h2>
+                <ul class="d-list">
+                    % for schema in schemas:
+                    <li class="d-list__item">
+                        <a href="${schema.object_name}.html">
+                            Schema ${schema.object_name}
+                        </a>
+                        % if schema.comment:
+                        <p>${schema.comment}</p>
+                        % endif
+                    </li>
+                    % endfor
+                </ul>
+            </div>
+        </div>
