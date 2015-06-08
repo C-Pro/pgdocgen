@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-
 setup(
     name='pgdocgen',
     version='0.1',
@@ -17,7 +16,7 @@ setup(
     author_email = "cpro29a@gmail.com",
     description = "Documentation generator for Postgresql schema",
     license = "LGPL",
-    keywords = ["sql","ddl","documentation","generator"],
+    keywords = ["postgresql","sql","ddl","documentation","generator"],
     url = "https://github.com/C-Pro/pgdocgen",
     download_url = "https://github.com/C-Pro/pgdocgen/tarball/0.1",
 )
