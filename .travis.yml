@@ -6,6 +6,6 @@ python:
 install:
   - python setup.py install
 before_script:
-  - psql -U postgres -с pgdocgen/tests/sql/testdb.sql
+  - psql -U postgres -f pgdocgen/tests/sql/testdb.sql
 script:
   - nosetests
