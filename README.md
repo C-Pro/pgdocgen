@@ -1,7 +1,6 @@
 # pgdocgen
-=========
-
 [![Build Status](https://travis-ci.org/C-Pro/pgdocgen.svg?branch=master)](https://travis-ci.org/C-Pro/pgdocgen)
+=========
 
 pgdocgen is a basic documentation generator for Postgresql schemas and PL/PgSQL code.
 * It extracts schema description from `information_schema` tables and uses comments made with `comment on` sql command.
