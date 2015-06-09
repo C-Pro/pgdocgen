@@ -22,18 +22,19 @@
                             % for t in tables:
                                 <li class="d-function-list__item">
                                     <a href="#${t.object_name}">
-                                        % if t.object_type == 'table':
-                                        <b>T</b>
-                                        % elif t.object_type == 'view':
-                                        <b>V</b>
-                                        % elif t.object_type == 'materialized view':
-                                        <b>MV</b>
-                                        % elif t.object_type == 'foreign table':
-                                        <b>FT</b>
-                                        % else:
-                                        <b>?</b>
-                                        % endif
-                                        &nbsp;${t.schema_name}.${t.object_name}
+                                    <%
+                                        if t.object_type == 'table':
+                                          ttype = 'T'
+                                        elif t.object_type == 'view':
+                                          ttype = 'V'
+                                        elif t.object_type == 'materialized view':
+                                          ttype = 'MV'
+                                        elif t.object_type == 'foreign table':
+                                          ttype = 'FT'
+                                        else:
+                                          ttype = '?'
+                                    %>
+                                    <b>${ttype}</b>&nbsp;${t.schema_name}.${t.object_name}
                                     </a>
                                 </li>
                             % endfor

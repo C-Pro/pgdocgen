@@ -6,7 +6,6 @@ def readddl(db):
     JDOC objects for table descriptions'''
     jdoc = []
     for schema in db.contents:
-        print('{} {}'.format(schema.object_type,schema.object_name))
         j = JDOC(None,
                  schema.object_name,
                  schema.comment,
