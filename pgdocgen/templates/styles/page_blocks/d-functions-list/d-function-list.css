@@ -1,5 +1,5 @@
 .d-function-list {
-    width: 210px;
+    width: 300px;
     height: 100%;
     position: fixed;
     background-color: #5a6060;
@@ -12,7 +12,7 @@
 
 .d-function-list__content {
     height: 100%;
-    width: 172px;
+    width: 262px;
     overflow: scroll;
     background-color: #6a7070;
 }
@@ -25,7 +25,7 @@
 }
 
 .d-function-list__f-level {
-    width: 162px;
+    width: 262px;
     background-color: #626868;
     padding-bottom: 67px;
 }
@@ -36,7 +36,7 @@
 }
 
 .d-function-list__f-level .d-function-list__item {
-    width: 142px;
+    width: 232px;
     line-height: 39px;
     border-bottom: 1px solid #6a7070;
     background-color: #626868;
@@ -83,7 +83,7 @@
 }
 
 .d-function-list_minimized_state {
-    left: -172px;
+    left: -262px;
 }
 
 .d-function-list__btn-uncover, .d-function-list__btn-cover {
