@@ -36,5 +36,6 @@ class DB(DDLObject):
     def __init__(self, db_connection_string):
         '''DB constructor'''
         self.contents = []
+        self.object_type = 'database'
         self.connect(db_connection_string)
         self.read_contents()

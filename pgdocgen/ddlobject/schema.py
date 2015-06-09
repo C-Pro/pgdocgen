@@ -10,14 +10,19 @@ class Schema(DDLObject):
     contents = []
 
     def read_contents(self, name, conn):
-        '''Read table columns'''
+        '''Read schema tables'''
         sql = '''select c.relname,
-                        d.description
+                        d.description,
+                        case c.relkind
+                          when 'r' then 'table'
+                          when 'v' then 'view'
+                          when 'm' then 'materialized view'
+                          when 'f' then 'foreign table'
+                        end as table_type
                   from pg_catalog.pg_class c
-                  join pg_catalog.pg_tables t on c.relname = t.tablename
                   join pg_catalog.pg_namespace n on n.oid = c.relnamespace
                   left join pg_catalog.pg_description d on (d.objoid = c.oid)
-                where c.relkind = 'r' and
+                where c.relkind in ('r','v','m','f') and
                       n.nspname = %s and
                       n.nspname not like 'pg\_%%' and
                       n.nspname not in ('information_schema') and
@@ -29,7 +34,7 @@ class Schema(DDLObject):
         tables = cur.fetchall()
         from pgdocgen.ddlobject.table import Table
         for table in tables:
-            table_obj = Table(name, table[0], table[1], conn)
+            table_obj = Table(name, table[0], table[1], table[2], conn)
             log.debug('{}: {}'.format(table[0], table[1]))
             self.contents.append(copy.deepcopy(table_obj))
         cur.close()
@@ -37,6 +42,7 @@ class Schema(DDLObject):
     def __init__(self, name, comment, conn):
         '''Schema object constructor'''
         self.contents = []
+        self.object_type = 'schema'
         self.comment = comment
         self.object_name = name
         self.read_contents(name, conn)

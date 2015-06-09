@@ -30,7 +30,7 @@ class HtmlGenerator(object):
                                       key=lambda x: x.object_name),
                    'tables': sorted([j for j in jdoc \
                    if (j.schema_name == schema.object_name and j.object_type \
-                       in ['table', 'view'])], \
+                       in ['table', 'view', 'materialized view', 'foreign table'])], \
                                     key=lambda x: x.object_name),
                    'schema_name': schema.object_name,
                    'schemas': sorted(schemas, key=lambda x: x.object_name),

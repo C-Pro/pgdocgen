@@ -21,7 +21,7 @@ tables as
         c.relnamespace as schema_oid,
         c.relname as name
  from pg_catalog.pg_class c
- where c.relkind = 'r')
+ where c.relkind in ('r','v','m','f'))
 select a.attname,
        ty.typname,
        d.description
@@ -48,10 +48,11 @@ order by s.name,t.name,a.attnum'''
             self.contents.append(copy.deepcopy(column_dict))
         cur.close()
 
-    def __init__(self, schema_name, name, comment, conn):
+    def __init__(self, schema_name, name, comment, table_type, conn):
         '''Table object constructor'''
         self.contents = []
         self.object_name = name
+        self.object_type = table_type
         self.comment = comment
         self.schema_name = schema_name
         self.read_contents(schema_name, name, conn)

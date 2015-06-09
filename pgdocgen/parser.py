@@ -13,10 +13,11 @@ class JDOC(object):
     params = []
     returns = ''
 
-    def __init__(self, schema_name, object_name, comment):
+    def __init__(self, schema_name, object_name, comment, object_type=''):
         '''Constructor of jdoc class'''
         self.schema_name = schema_name
         self.object_name = object_name
+        self.object_type = object_type
         self.comment = comment
         self.params = []
 
