@@ -4,25 +4,52 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="styles/documentation_functions.css" />
         <title>${title}</title>
-        <script type="text/javascript">
-          function toggleSidebar()
-          {
-            var classname = document.getElementById("Sidebar").className
-            if(classname.match(/maximized/gi) != null)
-            {
-              document.getElementById("Sidebar").className = "d-function-list d-function-list_minimized_state";
-              document.getElementById("SidebarBt").className = "d-function-list__btn-uncover";
-            } else
-            {
-              document.getElementById("Sidebar").className = "d-function-list d-function-list_maximized_state";
-              document.getElementById("SidebarBt").className = "d-function-list__btn-cover";
-            }
-          }
-        </script>
+        <script>
+         var isOpen = true;
+ 
+         function load() {
+             var content = document.getElementById("content");
+             var sidebarStyle = getComputedStyle(sidebar);
+             var fWidth = sidebar.offsetWidth;
+             var leftMargin = fWidth + 10 + "px";
+ 
+             content.style.marginLeft = fWidth + 10 + "px";
+         }
+ 
+         function toggle(e) {
+             e.preventDefault();
+             if (isOpen) {
+                 hide();
+                 isOpen = false;
+             } else {
+                 show();
+                 isOpen = true;
+             }
+         }
+ 
+         function hide() {
+             sidebar.classList.add('d-function-list_minimized_state');
+             sidebar.classList.remove('d-function-list_maximized_state');
+             content.classList.add('d-content__wrapper_maximized');
+             btn.classList.add('d-function-list__btn-uncover');
+             btn.classList.remove('d-function-list__btn-cover');
+         }
+ 
+         function show() {
+             sidebar.classList.add('d-function-list_maximized_state');
+             sidebar.classList.remove('d-function-list_minimized_state');
+             content.classList.remove('d-content__wrapper_maximized');
+             btn.classList.add('d-function-list__btn-cover');
+             btn.classList.remove('d-function-list__btn-uncover');
+         }
+     </script>
+
     </head>
-    <body class="d-page">
+    <body class="d-page" onload="load()">
         <div class="d-page__wrapper">
-            ${next.body()}
+            <div class="d-content__wrapper" id="content">
+              ${next.body()}
+            </div>
         </div>
         <footer class="d-footer">
             <div class="d-footer__content">

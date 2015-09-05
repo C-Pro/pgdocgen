@@ -23,4 +23,6 @@ p {
     color: #767676;
 }
 
-
+.d-content__wrapper {
+	width: 990px;
+}

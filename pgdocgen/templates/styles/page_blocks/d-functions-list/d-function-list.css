@@ -1,5 +1,5 @@
 .d-function-list {
-    width: 300px;
+    /*width*/: 210px;
     height: 100%;
     position: fixed;
     background-color: #5a6060;
@@ -7,12 +7,13 @@
     left: 0;
     padding: 0;
     padding-bottom: 67px;
+    padding-right: 40px;
     margin: 0;
 }
 
 .d-function-list__content {
     height: 100%;
-    width: 262px;
+    /*width: 172px;*/
     overflow: scroll;
     background-color: #6a7070;
 }
@@ -25,7 +26,7 @@
 }
 
 .d-function-list__f-level {
-    width: 262px;
+    /*width: 162px;*/
     background-color: #626868;
     padding-bottom: 67px;
 }
@@ -36,11 +37,12 @@
 }
 
 .d-function-list__f-level .d-function-list__item {
-    width: 232px;
+    /*width: 142px;*/
     line-height: 39px;
     border-bottom: 1px solid #6a7070;
     background-color: #626868;
     padding-left: 20px;
+    padding-right: 20px;
 }
 
 .d-function-list__s-level .d-function-list__item {
@@ -83,7 +85,8 @@
 }
 
 .d-function-list_minimized_state {
-    left: -262px;
+    /*left: -172px;*/
+    width: 0;
 }
 
 .d-function-list__btn-uncover, .d-function-list__btn-cover {

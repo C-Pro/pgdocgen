@@ -1,6 +1,5 @@
 .d-content {
     background-color: #fff;
-    width: 100%;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
     padding: 5px 35px 35px 40px;
     margin-bottom: 90px;
@@ -12,4 +11,13 @@
     font-weight: 100;
     color: #3e3e3e;
     margin-top: 30px;
+}
+
+.d-content__wrapper {
+	padding: 22.5px 10px 67px;
+    margin: 0 auto;
+}
+
+.d-content__wrapper_maximized {
+	margin-left: 50px !important;
 }
