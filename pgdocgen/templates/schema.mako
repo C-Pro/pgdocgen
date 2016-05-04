@@ -80,7 +80,7 @@
                         </a>
                     </h1>
                     <p class="d-function__description">
-                        ${f.comment}
+                        ${f.comment or ''}
                     </p>
                     % if len(f.params) > 0:
                     <div class="d-function__parameter">
@@ -118,7 +118,7 @@
                         </a>
                     </h1>
                     <p class="d-function__description">
-                        ${t.comment}
+                        ${t.comment or ''}
                     </p>
                     % if len(t.params) > 0:
                     <div class="d-function__parameter">
@@ -128,7 +128,11 @@
                         % for p in t.params:
                         <p class="d-function__parameter_item">
                             <span>
-                                ${p['name']} (${p['type']}) - ${p['comment']}
+                                % if p['comment']:
+                                  ${p['name']} (${p['type']}) - ${p['comment']}
+                                % else:
+                                  ${p['name']} (${p['type']})
+                                % endif
                             </span>
                         </p>
                         % endfor
