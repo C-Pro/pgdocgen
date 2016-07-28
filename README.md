@@ -6,6 +6,20 @@ pgdocgen is a basic documentation generator for Postgresql schemas and PL/PgSQL 
 * It extracts schema description from `information_schema` tables and uses comments made with `comment on` sql command.
 * It extracts description of stored functions from JavaDoc like format inspired by [HyperSQL](http://projects.izzysoft.de/trac/hypersql)
 
+#### Supported objects
+* Tables
+* Views
+* Materialized views
+* Columns with types and comments
+* Functions with parameters and return types
+
+#### TODO
+* Constraints
+* Indexes
+* References
+* Types
+* Etc...
+
 #### Comment format example:
 ```
 /**The coolest function ever
@@ -18,11 +32,11 @@ pgdocgen is a basic documentation generator for Postgresql schemas and PL/PgSQL 
 
 #### Config file
 To build documentation you should create configuration file.
-Take a look at pgdocgen/tests/test.ini:
+Take a look at [test.ini](pgdocgen/tests/test.ini):
 
 ```
 [pgdocgen]
-db_connect_string=dbname=test_pgdocgen user=test_pgdocgen port=5432 password=aoijrm39R host=127.0.0.1
+db_connect_string=dbname=test_pgdocgen user=test_pgdocgen port=5432 password=aoijrm39R host=localhost
 log_file=test.log
 input_dir=test_sql
 input_ext=sql
@@ -42,5 +56,5 @@ Config parameters:
 
 #### Usage:
 ```
-pgdocgen config.file
+pgdocgen config.ini
 ```
