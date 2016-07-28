@@ -13,7 +13,7 @@ setup(
     ],
     # metadata for upload to PyPI
     author = "Sergey Melekhin",
-    author_email = "cpro29a@gmail.com",
+    author_email = "sergey@melekhin.me",
     description = "Documentation generator for Postgresql schema",
     license = "LGPL",
     keywords = ["postgresql","sql","ddl","documentation","generator"],
