@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pgdocgen',
-    version='0.3',
+    version='0.4',
     packages=find_packages(),
     scripts=['pgdocgen/pgdocgen'],
     include_package_data=True,
@@ -18,5 +18,5 @@ setup(
     license = "LGPL",
     keywords = ["postgresql","sql","ddl","documentation","generator"],
     url = "https://github.com/C-Pro/pgdocgen",
-    download_url = "https://github.com/C-Pro/pgdocgen/tarball/0.3",
+    download_url = "https://github.com/C-Pro/pgdocgen/tarball/0.4",
 )
