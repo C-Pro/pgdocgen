@@ -33,6 +33,21 @@ returns: return'''
         p = pgdocgen.parser.Parser()
         self.assertEqual(str(p.parse(text)[0]), ret)
 
+    def test_noschema_jdoc(self):
+        text = '''
+/**Test comment
+*@function bebebe
+*@param param
+*@returns return
+*/'''
+        ret = '''##############
+function public.bebebe
+Test comment
+param
+returns: return'''
+        p = pgdocgen.parser.Parser()
+        self.assertEqual(str(p.parse(text)[0]), ret)
+
     def test_double_jdoc(self):
         text = '''
 /**Test comment1

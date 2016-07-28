@@ -28,6 +28,7 @@ input_dir=test_sql
 input_ext=sql
 output_dir=out_html
 project_name=Pgdocgen test project
+;default_schema=s2
 ```
 
 Config parameters:
@@ -36,6 +37,7 @@ Config parameters:
 * input_ext - extension of input files. You can really comment code in any language using this syntax, maybe you'll want to change this parameter to something other than 'sql' :)
 * output_dir - where pgdocgen will output html documentation
 * project_name - this will be used for page titles
+* default_schema - is used for functions created without implicitly specifying schema (eg. via search_path) if not set "public" will be used
 
 
 #### Usage:

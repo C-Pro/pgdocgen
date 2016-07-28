@@ -16,7 +16,7 @@ def process_file(jdoc):
        It parses file and generates JDOC objects'''
     def process_int(s):
         '''internal process_file without jdoc parameter'''
-        p = Parser()
+        p = Parser(default_schema = settings.get("default_schema","public"))
         r = p.parse(s)
         global jdoc
         jdoc = jdoc + r

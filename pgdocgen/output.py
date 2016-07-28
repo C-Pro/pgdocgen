@@ -58,6 +58,7 @@ class HtmlGenerator(object):
 
         #get all distinct schema names from jdoc:
         schemas = [j for j in jdoc if j.object_type == 'schema']
+        schemas = [j for j in schemas if len([x for x in jdoc if x.object_type != 'schema' and x.schema_name == j.object_name]) > 0]
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         try:

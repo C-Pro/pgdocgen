@@ -41,14 +41,15 @@ class JDOC(object):
 class Parser(object):
     '''naive JDOC subset parser class'''
 
-    def __init__(self):
+    def __init__(self, default_schema="public"):
         '''Compiles regular expressions'''
         self.RE_START_COMMENT = re.compile(r'^[\s]*\/\*\*(.*)$')
         self.RE_COMMENT_BODY = re.compile(r'^[\s]*\*[\s]*([^@/]{1}.*)$')
         self.RE_END_COMMENT = re.compile(r'(.*)\*/')
         self.RE_PARAM = re.compile(r'^[\s]*\*[\s]*@([\w]+)[\s]*(.*)')
-        self.RE_SCHEMA_OBJECT = re.compile(r'[\s]*([\w]+)\.([\w]+)')
+        self.RE_SCHEMA_OBJECT = re.compile(r'[\s]*([\w]+\.)?([\w]+)')
         self.log = get_logger()
+        self.default_schema = default_schema
 
     def parse(self, text):
         '''Parses input string and returns list of DDLObjects'''
@@ -77,6 +78,10 @@ class Parser(object):
                         jdoc.object_type = param_name
                         if rso:
                             jdoc.schema_name = rso.group(1)
+                            if jdoc.schema_name:
+                                jdoc.schema_name = jdoc.schema_name.strip(".")
+                            if not jdoc.schema_name or jdoc.schema_name == "":
+                                jdoc.schema_name = self.default_schema
                             jdoc.object_name = rso.group(2)
                     elif param_name in ['return',
                                         'returns',
