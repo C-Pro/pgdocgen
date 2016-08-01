@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pgdocgen',
-    version='0.4',
+    version='0.4.1',
     packages=find_packages(),
     scripts=['pgdocgen/pgdocgen'],
     include_package_data=True,

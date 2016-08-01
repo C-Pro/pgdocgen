@@ -6,16 +6,24 @@
         <title>${title}</title>
         <script>
          var isOpen = true;
- 
+         var content;
+         var sidebar;
+         var btn;
+
          function load() {
-             var content = document.getElementById("content");
+             content = document.getElementById("content");
+             sidebar = document.getElementById("sidebar");
+             btn = document.getElementById("btn");
+             //If no sidebar on page - exit
+             if (! sidebar) {
+               return;
+             }
              var sidebarStyle = getComputedStyle(sidebar);
              var fWidth = sidebar.offsetWidth;
              var leftMargin = fWidth + 10 + "px";
- 
              content.style.marginLeft = fWidth + 10 + "px";
          }
- 
+
          function toggle(e) {
              e.preventDefault();
              if (isOpen) {
@@ -26,7 +34,7 @@
                  isOpen = true;
              }
          }
- 
+
          function hide() {
              sidebar.classList.add('d-function-list_minimized_state');
              sidebar.classList.remove('d-function-list_maximized_state');
@@ -34,7 +42,7 @@
              btn.classList.add('d-function-list__btn-uncover');
              btn.classList.remove('d-function-list__btn-cover');
          }
- 
+
          function show() {
              sidebar.classList.add('d-function-list_maximized_state');
              sidebar.classList.remove('d-function-list_minimized_state');
