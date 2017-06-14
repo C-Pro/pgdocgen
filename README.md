@@ -1,5 +1,6 @@
 # pgdocgen
 [![Build Status](https://travis-ci.org/C-Pro/pgdocgen.svg?branch=master)](https://travis-ci.org/C-Pro/pgdocgen)
+[![PyPI version](https://badge.fury.io/py/pgdocgen.svg)](https://badge.fury.io/py/pgdocgen)
 =========
 
 pgdocgen is a basic documentation generator for Postgresql schemas and PL/PgSQL code.
