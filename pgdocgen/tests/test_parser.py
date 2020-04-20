@@ -31,7 +31,7 @@ Test comment
 param
 returns: return'''
         p = pgdocgen.parser.Parser()
-        self.assertEqual(str(p.parse(text)[0]), ret)
+        self.assertEqual(str(p.parse(text)["shm.bebebe"]), ret)
 
     def test_noschema_jdoc(self):
         text = '''
@@ -46,7 +46,7 @@ Test comment
 param
 returns: return'''
         p = pgdocgen.parser.Parser()
-        self.assertEqual(str(p.parse(text)[0]), ret)
+        self.assertEqual(str(p.parse(text)["public.bebebe"]), ret)
 
     def test_double_jdoc(self):
         text = '''
@@ -77,8 +77,8 @@ trigger shm.bebebe
 Test comment2
 returns: return'''
         p = pgdocgen.parser.Parser()
-        self.assertEqual(str(p.parse(text)[0]), ret1)
-        self.assertEqual(str(p.parse(text)[1]), ret2)
+        #self.assertEqual(str(p.parse(text)["shm.bebebe"]), ret1)
+        self.assertEqual(str(p.parse(text)["shm.bebebe"]), ret2)
 
 if __name__ == '__main__':
     unittest.main()
