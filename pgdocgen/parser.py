@@ -25,6 +25,10 @@ class JDOC(object):
         '''add param value to jdoc'''
         self.params.append((param_name, param_desc))
 
+    def key(self):
+        '''returns unique object name'''
+        return f'{self.schema_name}.{self.object_name}'
+
     def __str__(self):
         '''string representation for debugging'''
         s = '##############\n{} {}.{}\n{}\n'.format(self.object_type,
@@ -54,7 +58,7 @@ class Parser(object):
     def parse(self, text):
         '''Parses input string and returns list of DDLObjects'''
         in_comment = False
-        result = []
+        result = {}
         for s in iter(text.splitlines()):
             self.log.debug('Parsing string: {}'.format(s))
             rsc = self.RE_START_COMMENT.match(s)
@@ -96,7 +100,7 @@ class Parser(object):
                     jdoc.comment = comment
                 if rec:
                     in_comment = False
-                    result.append(copy.deepcopy(jdoc))
+                    result[jdoc.key()] = copy.deepcopy(jdoc)
                     del jdoc
                     self.log.debug('Comment:' + comment)
         return result

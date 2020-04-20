@@ -4,13 +4,13 @@ from pgdocgen.parser import JDOC
 def readddl(db):
     '''Walks down database objects and generates
     JDOC objects for table descriptions'''
-    jdoc = []
+    jdoc = {}
     for schema in db.contents:
         j = JDOC(None,
                  schema.object_name,
                  schema.comment,
                  schema.object_type)
-        jdoc.append(j)
+        jdoc[schema.object_name] = j
         for table in schema.contents:
             j = JDOC(table.schema_name,
                      table.object_name,
@@ -18,5 +18,5 @@ def readddl(db):
                      table.object_type)
             for c in table.contents:
                 j.params.append(c)
-            jdoc.append(j)
+            jdoc[j.key()] = j
     return jdoc

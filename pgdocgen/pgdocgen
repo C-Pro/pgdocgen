@@ -19,7 +19,8 @@ def process_file(jdoc):
         p = Parser(default_schema = settings.get("default_schema","public"))
         r = p.parse(s)
         global jdoc
-        jdoc = jdoc + r
+        jdoc.update(r)
+        return jdoc
     return process_int
 
 
@@ -31,7 +32,7 @@ if __name__ == '__main__':
     log = pgdocgen.utils.init_logging(settings)
     log.info('Pgdocgen started')
 
-    jdoc = []
+    jdoc = {}
 
     if 'db_connect_string' in settings.keys():
         log.debug('Reading from database...')

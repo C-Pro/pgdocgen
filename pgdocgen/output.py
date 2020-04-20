@@ -24,11 +24,11 @@ class HtmlGenerator(object):
         '''Generates html for a subset of jdoc records
         describing objects of specific schema'''
 
-        params = {'functions': sorted([j for j in jdoc \
+        params = {'functions': sorted([j for _,j in jdoc.items() \
                    if (j.schema_name == schema.object_name and j.object_type \
                        in ['function', 'procedure', 'trigger'])], \
                                       key=lambda x: x.object_name),
-                   'tables': sorted([j for j in jdoc \
+                   'tables': sorted([j for _,j in jdoc.items() \
                    if (j.schema_name == schema.object_name and j.object_type \
                        in ['table', 'view', 'materialized view', 'foreign table'])], \
                                     key=lambda x: x.object_name),
@@ -57,8 +57,8 @@ class HtmlGenerator(object):
         One file per schema plus index file.'''
 
         #get all distinct schema names from jdoc:
-        schemas = [j for j in jdoc if j.object_type == 'schema']
-        schemas = [j for j in schemas if len([x for x in jdoc if x.object_type != 'schema' and x.schema_name == j.object_name]) > 0]
+        schemas = [j for _, j in jdoc.items() if j.object_type == 'schema']
+        schemas = [j for j in schemas if len([x for _,x in jdoc.items() if x.object_type != 'schema' and x.schema_name == j.object_name]) > 0]
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         try:

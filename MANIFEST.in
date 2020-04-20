@@ -1,2 +1,3 @@
 include *.py
+include pgdocgen/pgdocgen
 recursive-include pgdocgen *.py *.mako *.png *.css
