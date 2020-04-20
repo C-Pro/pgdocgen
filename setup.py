@@ -18,5 +18,5 @@ setup(
     license = "LGPL",
     keywords = ["postgresql","sql","ddl","documentation","generator"],
     url = "https://github.com/C-Pro/pgdocgen",
-    download_url = "https://github.com/C-Pro/pgdocgen/tarball/0.4",
+    download_url = "https://github.com/C-Pro/pgdocgen/tarball/0.4.3",
 )
